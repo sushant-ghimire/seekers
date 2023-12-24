@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./scrpit.js"></script>
+    <style>
+      .btn {
+        display: flex;
+        width: max-content;
+        gap: 15px;
+        margin: auto;
+      }
+      .btn > button {
+        padding: 15px 25px;
+        background-color: blue;
+        cursor: pointer;
+        color: white;
+        width: max-content;
+        margin: auto;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        background-color: red;
+      }
+      .spin-button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="desktop">
+
+        
+      <div class="div">
+        <div class="overlap">
+          <div class="">
+            
+            <div class="btn">
+              <button id="male" onclick="male()">Male</button>
+              <button id="female" onclick="female()">Female</button>
+              <button id="female" onclick="party()">Party</button>
+            </div>
+
+
+            <div class="">
+              <img class="image" src="img/image 2.png" />
+              <div class="group">
+                <div class="shop-now-and-contact-wrapper">
+                  <div class="shop-now-and-contact">
+                    <img src="img/Group 1.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <img class="rectangle" src="attachments/image 1.jpg" />
+            </div>
+          </div>
+        </div>
+        <div class="frame">
+          <div class="text-wrapper-2">welcome to fashion fusion</div>
+        </div>
+        <div onclick="spinFunction()" class="spin-button">
+          <div class="text-wrapper-3">spin</div>
+        </div>
+        <img class="ellipse" src="img/Ellipse 1.png" />
+      </div>
+    </div>
+
+    <script>
+      const rectangle=document.querySelector(".rectangle")
+
+              let i=0
+              let j=99
+              let k=18
+              let l = 19
+              let m = 21
+      function male(){
+           var urlParams = new URLSearchParams(window.location.search);
+
+      urlParams.set('paramName', 'male');
+
+      var newUrl = window.location.pathname + '?' + urlParams.toString();
+
+      window.history.replaceState({}, document.title, newUrl);
+      spinFunction()
+
+
+      }
+      function female(){
+           var urlParams = new URLSearchParams(window.location.search);
+
+      urlParams.set('paramName', 'female');
+
+      var newUrl = window.location.pathname + '?' + urlParams.toString();
+
+      window.history.replaceState({}, document.title, newUrl);
+
+      console.log("Updated URL:", newUrl);
+      spinFunction()
+      }
+      function party(){
+           var urlParams = new URLSearchParams(window.location.search);
+
+      urlParams.set('paramCategory', ['party' , 'night' , 'wedding']);
+
+      var newUrl = window.location.pathname + '?' + urlParams.toString();
+
+      window.history.replaceState({}, document.title, newUrl);
+
+      spinFunction()
+      }
+      function spinFunction(){
+                  const currentUrl = window.location.href;
+                  let gender=currentUrl.split("paramName=")[1];
+                  if(gender.includes('&')){
+                    gender=gender.split('&')[0]
+                  }
+                  let category=""
+                  if(currentUrl.split("paramCategory=")[1]?.includes('party')){
+                    category="party"
+                  }
+                  else if(currentUrl.split("paramCategory=")[1]?.includes('night')){
+                    category="night"
+                  }
+                  else
+                  category ='wedding'
+                
+                  console.log(gender,category);
+      if(gender=='male'&& category=='')
+      rectangle.src = `attachments_male/image male ${++i}.jpg`;
+      else if(gender=='female'&& category=='')
+      rectangle.src = `attachments_female/image ${++j}.jpg`;
+    else if(gender=='female' && category=='party')
+    rectangle.src = `attachments_female/image ${++j}.jpg`;
+    else if(gender=='male' && category=='party')
+    {
+
+        rectangle.src = `attachments_party_male/image male ${++k}.jpg`;
+    }
+    else if (gender == 'male' && category =='wedding')
+    rectangle.src = `men-wedding/image male ${++j}.png`;
+
+
+    else if (gender == 'female' && category =='night')
+    rectangle.src = `women-night/image ${++m}.jpg`;
+
+
+    else
+    {
+
+        rectangle.src = `attachments/image ${++l}.jpg`;
+    }
+
+
+      }
+    </script>
+
+  </body>
+</html>
